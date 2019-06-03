@@ -5,6 +5,7 @@ Use PHP Docblock `@annotations` to register WordPress hooks, filters and shortco
 ## Requirements
 
 - PHP 7.2+
+- PHP-DI 6
 
 ## Install
 
