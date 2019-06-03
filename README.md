@@ -46,9 +46,9 @@ The following annotations can be used:
 ```
 
 - The `priority` and `accepted_args` parameters are optional, and default to 10 and 1 respectively
-- Double quotes are required, single quotes will throw an exception
+- Double quotes are required: `tag="double_quoted"`. single quotes will throw an exception
 
-You can wire multiple hooks to a single callback function:
+Wire multiple hooks to a single callback function:
 
 ```php
 /**
