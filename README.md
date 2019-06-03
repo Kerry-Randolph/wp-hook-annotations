@@ -1,36 +1,49 @@
 # Wordpress Hook Annotations
-Automatically wires callback functions to Wordpress hooks by using docblock annotations.
 
-For example, instead of putting boilerplate `add_action()`, `add_filter()`, or `add_shortcode()` in the constructor, 
-you would simply define it in the docblock of the callback function:
+Use PHP Docblock `@annotations` to register WordPress hooks, filters and shortcodes.
 
+## Requirements
+
+- PHP 7.2+
+
+## Install
+
+Via Composer
+
+```bash
+$ composer require kerryrandolph/wp-hook-annotations
 ```
+
+## Usage
+
+Instead of wiring callbacks with boilerplate `add_action()`, `add_filter()`, or `add_shortcode()`, 
+simply add the annotations directly to the callback function's docblock:
+
+```php
 /**
   * @Action(tag="wp_loaded",priority=10,accepted_args=1)
   */
-public function doSomethingAppropriate(){
-  // do something completely approprite
+public function doSomething(){
+  // do something
 }
 ```
 
-`@Filter` accepts the same parameters as `@Action`.
+The following annotations can be used:
 
-`@Shortcode` accepts only the `tag` param: `@Shortcode(tag="some_wp_sc")`
-
-The `priority` and `accepted_args` parameters are optional, and default to 10 and 1 respectively, so this is valid:
-
-```
+```php
 /**
-  * @Filter(tag="some_wp_filter")
-  */
-public function updateSomeValue(string $value): string {
-  return 'updated';
-}
+ * @Action(tag="the_hook_name", priority=1, accepted_args=1)
+ * @Filter(tag="the_filter_name", priority=1, accepted_args=1)
+ * @Shortcode(tag="the_shortcode_name")
+ */
 ```
+
+- The `priority` and `accepted_args` parameters are optional, and default to 10 and 1 respectively
+- Double quotes are required, single quotes will throw an exception
 
 You can wire multiple hooks to a single callback function:
 
-```
+```php
 /**
   * @Filter(tag="some_wp_filter")
   * @Action(tag="some_wp_action")
@@ -41,13 +54,18 @@ public function updateSomeValue(string $value): string {
 }
 ```
 
-Once the hooks are defined in the docblocks, you need to get the `HookManager` object to process them.
+Once you have added the hook annotations, you need to get the `HookManager` object to process them.
 
-The easiest way is by using the provided `HookAware` trait:
+If you are using Dependency Injection, the easiest way is by using the provided `HookAware` trait:
 
-```
+```php
 class MyWordpressHookClass {
   use HookAware;
+  
+  /**
+    * @Action(tag="wp_loaded")
+    */
+  public function foo(){}
 }
 ```
 
@@ -60,4 +78,6 @@ __construct( HookManager $hook_manager ) {
 }
 ```
 
-NOTE: Double quotes are required. This is not valid: `@Shortcode(tag='some_wp_tag')`
+## License
+
+WP Hook Annotations is released under [the MIT License](LICENSE).
