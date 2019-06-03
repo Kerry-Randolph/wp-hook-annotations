@@ -1,7 +1,6 @@
 <?php
 declare( strict_types=1 );
 
-use DI\Annotation\Inject;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
 use Doctrine\Common\Cache\ArrayCache;
@@ -17,21 +16,21 @@ use function DI\string;
 
 return [
 
-	'this.path'            => static function () {
+	'this.path'      => static function () {
 		return dirname( __DIR__ );
 	},
-	'log.name'             => 'hook-annotations-debug',
-	'test.log.name'             => 'hook-annotations-test',
-	'log.path'             => string( '{this.path}/logs/{log.name}.log' ),
-	'test.log.path'             => string( '{this.path}/logs/{test.log.name}.log' ),
-	'log.level'            => static function ( ContainerInterface $c ) {
+	'log.name'       => 'hook-annotations-debug',
+	'test.log.name'  => 'hook-annotations-test',
+	'log.path'       => string( '{this.path}/logs/{log.name}.log' ),
+	'test.log.path'  => string( '{this.path}/logs/{test.log.name}.log' ),
+	'log.level'      => static function ( ) {
 		return Logger::DEBUG;
 	},
-	'test.log.level'            => static function ( ContainerInterface $c ) {
+	'test.log.level' => static function ( ) {
 		return Logger::INFO;
 	},
 
-	'test.logger' => static function ( ContainerInterface $c ) {
+	'test.logger'          => static function ( ContainerInterface $c ) {
 		$logger      = new Logger( $c->get( 'test.log.name' ) );
 		$fileHandler = new StreamHandler( $c->get( 'test.log.path' ),
 			$c->get( 'test.log.level' ) );
@@ -52,7 +51,7 @@ return [
 		return $logger;
 	},
 
-	Cache::class  => static function ( ContainerInterface $c ) {
+	Cache::class => static function ( ContainerInterface $c ) {
 		$array_cache = new ArrayCache();
 		$file_cache  = new FilesystemCache(
 			$c->get( 'this.path' ) . '/cache'
@@ -63,11 +62,11 @@ return [
 		return $chain_cache;
 	},
 
-	Reader::class => static function ( ContainerInterface $c ) {
+	Reader::class => static function ( ) {
 		// https://www.doctrine-project.org/projects/doctrine-annotations/en/1.6/annotations.html#handling-annotations
 		// TODO: This is not working. Workaround hack implemented in
 		//       AnnotationFactory to ignore Inject objects
-		AnnotationReader::addGlobalIgnoredName('Inject');
+		// AnnotationReader::addGlobalIgnoredName('Inject');
 
 		// Caching disabled in dev/stg
 		return new AnnotationReader();

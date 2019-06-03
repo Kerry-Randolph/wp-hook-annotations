@@ -5,7 +5,15 @@ namespace HookAnnotations\Hooks\Model;
 
 use Doctrine\Common\Annotations\Annotation\Required;
 use HookAnnotations\Annotations\ConstructionHelper;
+use InvalidArgumentException;
 
+/**
+ * Class Hook
+ *
+ * A tag and associated callback
+ *
+ * @package HookAnnotations\Hooks\Model
+ */
 abstract class Hook {
 	use ConstructionHelper;
 
@@ -14,14 +22,6 @@ abstract class Hook {
 	 * @var string
 	 */
 	private $tag;
-	/**
-	 * @var int
-	 */
-	private $priority = 10;
-	/**
-	 * @var int
-	 */
-	private $accepted_args = 1;
 
 	/**
 	 * @var callable
@@ -37,20 +37,17 @@ abstract class Hook {
 	public function __construct( array $values ) {
 
 		$index = 'tag';
-		$value = $this->indexExistsAndValueNotEmptyStringGuard( $index,
-			$values );
+		$value = $this->getValue( $index, $values );
+		if ( ! $value ) {
+			throw new InvalidArgumentException(
+				"$index missing or value not non-empty string"
+			);
+		}
 		$this->setTag( $value );
 
-		$this->setPriority( 10 );
-		$this->trySet( 'priority', $values, 'is_int',
-			[ $this, 'setPriority' ] );
-
-		$this->setAcceptedArgs( 1 );
-		$this->trySet( 'accepted_args', $values, 'is_int',
-			[ $this, 'setAcceptedArgs' ] );
-
 		// set default empty callback
-		$this->setCallback( static function () {} );
+		$this->setCallback( static function () {
+		} );
 	}
 
 	/**
@@ -65,34 +62,6 @@ abstract class Hook {
 	 */
 	public function setTag( string $tag ): void {
 		$this->tag = $tag;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getPriority(): int {
-		return $this->priority;
-	}
-
-	/**
-	 * @param int $priority
-	 */
-	public function setPriority( int $priority ): void {
-		$this->priority = $priority;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getAcceptedArgs(): int {
-		return $this->accepted_args;
-	}
-
-	/**
-	 * @param int $accepted_args
-	 */
-	public function setAcceptedArgs( int $accepted_args ): void {
-		$this->accepted_args = $accepted_args;
 	}
 
 	/**

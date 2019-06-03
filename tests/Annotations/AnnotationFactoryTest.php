@@ -95,10 +95,11 @@ class AnnotationFactoryTest extends ContainerTestCase {
 			= $this->annotation_factory->makeAnnotationObjects( $this, null,
 			Filter::class );
 
-		$this->assertCount( 1, $filtered );
+		// 2, because action subclass is included
+		$this->assertCount( 2, $filtered );
 
 		/** @var Filter $filter */
-		$filter = $filtered[0];
+		$filter = $filtered[1];
 		$this->assertSame( 'test_filter', $filter->getTag() );
 		$this->assertSame( 11, $filter->getPriority() );
 		$this->assertSame( 2, $filter->getAcceptedArgs() );

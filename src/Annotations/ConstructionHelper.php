@@ -7,38 +7,31 @@ use InvalidArgumentException;
 
 trait ConstructionHelper {
 
-	protected function indexExistsAndValueNotEmptyString(
+	/**
+	 * Gets the value in the array associated with $index
+	 * If index doesn't exist, or value not a string, returns empty string
+	 *
+	 * @param string $index
+	 * @param array  $values
+	 *
+	 * @return string
+	 */
+	protected function getValue(
 		string $index,
 		array $values
-	): bool {
+	): string {
 
 		if ( ! array_key_exists( $index, $values ) ) {
-			return false;
+			return '';
 		}
 
 		$value = $values[ $index ];
 
 		if ( ! is_string( $value ) ) {
-			return false;
+			return '';
 		}
 
-		if ( empty( $value ) ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	protected function indexExistsAndValueNotEmptyStringGuard(
-		string $index,
-		array $values
-	): string {
-
-		if ( ! $this->indexExistsAndValueNotEmptyString( $index, $values ) ) {
-			throw new InvalidArgumentException( "$index index missing or value not string or empty string" );
-		}
-
-		return $values[ $index ];
+		return $value;
 	}
 
 	protected function trySet(

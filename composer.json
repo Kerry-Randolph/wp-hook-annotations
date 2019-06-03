@@ -1,5 +1,6 @@
 {
   "require": {
+    "php": "^7.3.6",
     "php-di/php-di": "^6.0",
     "doctrine/cache": "^1.8",
     "doctrine/annotations": "^1.6",

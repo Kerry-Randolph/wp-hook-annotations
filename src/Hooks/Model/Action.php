@@ -8,6 +8,6 @@ namespace HookAnnotations\Hooks\Model;
  * @Target("METHOD")
  *
  */
-class Action extends Hook {
+class Action extends Filter {
 
 }

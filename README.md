@@ -1,4 +1,4 @@
-# wp-hook-annotations
+# Wordpress Hook Annotations
 Automatically wires callback functions to Wordpress hooks by using docblock annotations.
 
 For example, instead of putting boilerplate `add_action()`, `add_filter()`, or `add_shortcode()` in the constructor, 
