@@ -72,7 +72,8 @@ class MyWordpressHookClass {
 The `HookAware->processHooks` method is triggered automatically by the DI container, and uses reflection to discover the hooks and wire them into Wordpress.
 
 Alternatively, you could get the `HookManager` in the constructor via DI, and manually trigger `processHooks`:
-```
+
+```php
 __construct( HookManager $hook_manager ) {
   $hook_manager->processHooks( $this );
 }
