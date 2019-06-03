@@ -2,6 +2,12 @@
 
 Use PHP Docblock `@annotations` to register WordPress hooks, filters and shortcodes.
 
+[![Latest Stable Version](https://poser.pugx.org/kerryrandolph/wp-hook-annotations/v/stable)](https://packagist.org/packages/kerryrandolph/wp-hook-annotations)
+[![Total Downloads](https://poser.pugx.org/kerryrandolph/wp-hook-annotations/downloads)](https://packagist.org/packages/kerryrandolph/wp-hook-annotations)
+[![Latest Unstable Version](https://poser.pugx.org/kerryrandolph/wp-hook-annotations/v/unstable)](https://packagist.org/packages/kerryrandolph/wp-hook-annotations)
+[![License](https://poser.pugx.org/kerryrandolph/wp-hook-annotations/license)](https://packagist.org/packages/kerryrandolph/wp-hook-annotations)
+[![composer.lock](https://poser.pugx.org/kerryrandolph/wp-hook-annotations/composerlock)](https://packagist.org/packages/kerryrandolph/wp-hook-annotations)
+
 ## Requirements
 
 - PHP 7.2+
