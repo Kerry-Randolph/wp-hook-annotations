@@ -1,0 +1,4 @@
+vendor/
+logs/
+.phpunit.result.cache
+.idea/
