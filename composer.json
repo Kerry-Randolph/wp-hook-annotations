@@ -1,5 +1,4 @@
 {
-  "version": "0.0.1-dev",
   "name": "kerryrandolph/wp-hook-annotations",
   "description": "Use PHP docblock @annotations to register WordPress hooks, filters and shortcodes",
   "keywords": ["wordpress", "annotations", "docblocks"],
