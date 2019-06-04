@@ -63,11 +63,6 @@ return [
 	},
 
 	Reader::class => static function ( ) {
-		// https://www.doctrine-project.org/projects/doctrine-annotations/en/1.6/annotations.html#handling-annotations
-		// TODO: This is not working. Workaround hack implemented in
-		//       AnnotationFactory to ignore Inject objects
-		// AnnotationReader::addGlobalIgnoredName('Inject');
-
 		// Caching disabled in dev/stg
 		return new AnnotationReader();
 

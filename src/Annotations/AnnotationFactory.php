@@ -118,14 +118,6 @@ class AnnotationFactory {
 
 			foreach ( $objects as $object ) {
 
-				/*
-				   TODO: This is a workaround to skip/ignore DI Inject annotations.
-				   I tried adding global ignore in container config but its not working
-				*/
-				if ( $object instanceof Inject ) {
-					continue;
-				}
-
 				if ( isset( $class_filter )
 				) {
 					if ( ! $object instanceof $class_filter ) {

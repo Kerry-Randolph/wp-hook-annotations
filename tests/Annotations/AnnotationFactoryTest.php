@@ -95,7 +95,7 @@ class AnnotationFactoryTest extends ContainerTestCase {
 			= $this->annotation_factory->makeAnnotationObjects( $this, null,
 			Filter::class );
 
-		// 2, because action subclass is included
+		// 2, because action is subclass of filter
 		$this->assertCount( 2, $filtered );
 
 		/** @var Filter $filter */
