@@ -62,9 +62,13 @@ return [
 		return $chain_cache;
 	},
 
-	Reader::class => static function ( ) {
+	//Reader::class => static function ( ) {
+		// TODO: How to set this up so that library consumer doesn't have to
+		// PHP-DI does it this way: line 246
+		// vendor/php-di/php-di/src/Definition/Source/AnnotationBasedAutowiring.php
+
 		// Caching disabled in dev/stg
-		return new AnnotationReader();
+		//return new AnnotationReader();
 
 		// enable in prod
 		/*
@@ -75,5 +79,5 @@ return [
 			$debug = false // dev/stg -> true, prod -> false
 		);
 		*/
-	},
+	//},
 ];

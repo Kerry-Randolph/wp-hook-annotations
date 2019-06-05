@@ -1,7 +1,7 @@
 {
   "name": "kerryrandolph/wp-hook-annotations",
   "description": "Use PHP docblock @annotations to register WordPress hooks, filters and shortcodes",
-  "keywords": ["wordpress", "annotations", "docblocks"],
+  "keywords": ["wordpress", "annotations", "docblocks", "phpdoc", "reflection"],
   "type": "library",
   "homepage": "https://github.com/Kerry-Randolph/wp-hook-annotations",
   "license": "MIT",

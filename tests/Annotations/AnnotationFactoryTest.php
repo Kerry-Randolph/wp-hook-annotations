@@ -45,6 +45,7 @@ class AnnotationFactoryTest extends ContainerTestCase {
 	}
 
 	/**
+	 * @WpHookAnnotations\Hooks\Model\Shortcode(tag="test_sc")
 	 * @Filter(tag="test_filter",priority=11,accepted_args=2)
 	 *
 	 * @return void
@@ -56,7 +57,7 @@ class AnnotationFactoryTest extends ContainerTestCase {
 		$annotation_objects
 			= $this->annotation_factory->makeAnnotationObjects( $this );
 
-		$this->assertCount( 2, $annotation_objects );
+		$this->assertCount( 3, $annotation_objects );
 
 		/** @var Action $action */
 		$action = $annotation_objects[0];
@@ -66,7 +67,7 @@ class AnnotationFactoryTest extends ContainerTestCase {
 		$this->assertIsCallable( $action->getCallback() );
 
 		/** @var Filter $filter */
-		$filter = $annotation_objects[1];
+		$filter = $annotation_objects[2];
 		$this->assertSame( 'test_filter', $filter->getTag() );
 		$this->assertSame( 11, $filter->getPriority() );
 		$this->assertSame( 2, $filter->getAcceptedArgs() );
@@ -131,7 +132,7 @@ class AnnotationFactoryTest extends ContainerTestCase {
 			$source_object, $closure, Hook::class );
 
 		$this->assertIsArray( $filtered );
-		$this->assertCount( 2, $filtered );
+		$this->assertCount( 3, $filtered );
 
 		/** @var Action $action */
 		$action   = $filtered[0];

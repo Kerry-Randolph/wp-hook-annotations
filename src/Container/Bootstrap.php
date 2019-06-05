@@ -37,7 +37,9 @@ class Bootstrap {
 		 * https://github.com/doctrine/annotations/issues/182
 		 * Then this won't be needed at all
 		 */
-		AnnotationRegistry::registerLoader( 'class_exists' );
+		// Changed Annotationfactory to do this
+		// Cause bootstrap never called if library, right?
+		//AnnotationRegistry::registerLoader( 'class_exists' );
 
 		$builder = new ContainerBuilder;
 		$builder->useAnnotations( true );

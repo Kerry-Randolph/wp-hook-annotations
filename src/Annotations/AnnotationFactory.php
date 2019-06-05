@@ -3,17 +3,17 @@ declare( strict_types=1 );
 
 namespace WpHookAnnotations\Annotations;
 
-use DI\Annotation\Inject;
 use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\Reader;
-use WpHookAnnotations\Reflections\ReflectionFactory;
 use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionMethod;
 use ReflectionProperty;
 use Reflector;
+use WpHookAnnotations\Reflections\ReflectionFactory;
 
 class AnnotationFactory {
 
@@ -29,14 +29,13 @@ class AnnotationFactory {
 	/**
 	 * AnnotationObjectFactory constructor.
 	 *
-	 * @param Reader            $annotation_reader
 	 * @param ReflectionFactory $reflection_factory
+	 *
 	 */
 	public function __construct(
-		Reader $annotation_reader,
 		ReflectionFactory $reflection_factory
 	) {
-		$this->annotation_reader  = $annotation_reader;
+		$this->annotation_reader  = $this->getAnnotationReader();
 		$this->reflection_factory = $reflection_factory;
 	}
 
@@ -72,23 +71,26 @@ class AnnotationFactory {
 			( $class_filter . ' class not found' );
 		}
 
-		$reflectors
+		$method_reflectors
 			= $this->reflection_factory->getMethodReflectors( $source_object );
 
-		if ( empty( $reflectors ) ) {
+		if ( empty( $method_reflectors ) ) {
 			return [];
 		}
 
 		$annotation_objects = [];
 
-		foreach ( $reflectors as $reflector ) {
+		foreach ( $method_reflectors as $reflector ) {
 			$objects = [];
 
 			$loop_count = 1;
 			while ( true ) {
 
+				//$this->logger->debug(print_r($reflector, true));
+
 				try {
 					$objects = $this->tryGetAnnotations( $reflector );
+					//$this->logger->debug(print_r($objects, true));
 					break; // success!
 				} catch ( AnnotationException $e ) {
 
@@ -162,5 +164,12 @@ class AnnotationFactory {
 		}
 
 		return $objects;
+	}
+
+	private function getAnnotationReader(): Reader {
+		AnnotationRegistry::registerLoader( 'class_exists' );
+		$annotation_reader = new AnnotationReader();
+
+		return $annotation_reader;
 	}
 }
