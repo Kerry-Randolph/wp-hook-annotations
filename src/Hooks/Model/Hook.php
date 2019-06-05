@@ -1,10 +1,10 @@
 <?php
 declare( strict_types=1 );
 
-namespace HookAnnotations\Hooks\Model;
+namespace WpHookAnnotations\Hooks\Model;
 
 use Doctrine\Common\Annotations\Annotation\Required;
-use HookAnnotations\Annotations\ConstructionHelper;
+use WpHookAnnotations\Annotations\ConstructionHelper;
 use InvalidArgumentException;
 
 /**
@@ -12,7 +12,7 @@ use InvalidArgumentException;
  *
  * A tag and associated callback
  *
- * @package HookAnnotations\Hooks\Model
+ * @package WpHookAnnotations\Hooks\Model
  */
 abstract class Hook {
 	use ConstructionHelper;

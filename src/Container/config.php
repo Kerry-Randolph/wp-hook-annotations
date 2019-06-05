@@ -16,13 +16,13 @@ use function DI\string;
 
 return [
 
-	'this.path'      => static function () {
-		return dirname( __DIR__ );
+	'base.path'      => static function () {
+		return dirname( __DIR__, 2 );
 	},
 	'log.name'       => 'hook-annotations-debug',
 	'test.log.name'  => 'hook-annotations-test',
-	'log.path'       => string( '{this.path}/logs/{log.name}.log' ),
-	'test.log.path'  => string( '{this.path}/logs/{test.log.name}.log' ),
+	'log.path'       => string( '{base.path}/logs/{log.name}.log' ),
+	'test.log.path'  => string( '{base.path}/logs/{test.log.name}.log' ),
 	'log.level'      => static function ( ) {
 		return Logger::DEBUG;
 	},
@@ -54,7 +54,7 @@ return [
 	Cache::class => static function ( ContainerInterface $c ) {
 		$array_cache = new ArrayCache();
 		$file_cache  = new FilesystemCache(
-			$c->get( 'this.path' ) . '/cache'
+			$c->get( 'base.path' ) . '/cache'
 		);
 		$chain_cache = new ChainCache( [ $array_cache, $file_cache ] );
 		$chain_cache->setNamespace( 'hook-annotations_' );

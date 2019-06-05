@@ -1,16 +1,16 @@
 <?php
 
-namespace Tests\Hooks;
+namespace WpHookAnnotations\Tests\Hooks;
 
 use DI\Annotation\Inject;
 use DI\DependencyException;
 use DI\NotFoundException;
-use HookAnnotations\Hooks\HookAdder;
-use HookAnnotations\Hooks\Model\Action;
-use HookAnnotations\Hooks\Model\Filter;
-use HookAnnotations\Hooks\Model\Shortcode;
+use WpHookAnnotations\Hooks\HookAdder;
+use WpHookAnnotations\Hooks\Model\Action;
+use WpHookAnnotations\Hooks\Model\Filter;
+use WpHookAnnotations\Hooks\Model\Shortcode;
 use PHPUnit\Framework\TestCase;
-use Tests\ContainerTestCase;
+use WpHookAnnotations\Tests\ContainerTestCase;
 
 class HookAdderTest extends ContainerTestCase {
 

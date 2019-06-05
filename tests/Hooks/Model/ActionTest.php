@@ -1,12 +1,12 @@
 <?php
 declare( strict_types=1 );
 
-namespace Tests\Hooks\Model;
+namespace WpHookAnnotations\Tests\Hooks\Model;
 
 use DI\DependencyException;
-use HookAnnotations\Hooks\Model\Action;
+use WpHookAnnotations\Hooks\Model\Action;
 use InvalidArgumentException;
-use Tests\ContainerTestCase;
+use WpHookAnnotations\Tests\ContainerTestCase;
 
 /**
  * Class ActionTest
@@ -14,7 +14,7 @@ use Tests\ContainerTestCase;
  * All of the hook types (Action, Filter, Shortcode) are just marker types
  * that extend abstract Hook, so we just need to test one, right?
  *
- * @package Tests\Hooks\Model
+ * @package WpHookAnnotations\Tests\Hooks\Model
  */
 class ActionTest extends ContainerTestCase {
 

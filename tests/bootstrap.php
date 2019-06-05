@@ -6,45 +6,35 @@ declare( strict_types=1 );
  *
  */
 
-use DI\DependencyException;
-use DI\NotFoundException;
-use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use WpHookAnnotations\Container\Bootstrap;
 
-/**
- * Global php-di container used by unit tests
- *
- * @see tests/ContainerTestCase.php
- *
- * @var ContainerInterface $wp_hook_annotations_container
- */
-$wp_hook_annotations_container = require dirname( __DIR__ ) . '/Container/bootstrap.php';
+require_once dirname( __DIR__ ) . '\src\Container\Bootstrap.php';
 
 /**
  * Logs params for testing
  *
  * @param mixed ...$args
  *
- * @throws DependencyException
- * @throws NotFoundException
+ * @throws Exception
  */
 function wp_hook_annotations_test_hook_logger( ...$args ): void {
-	global $wp_hook_annotations_container;
+	$container = Bootstrap::getContainer();
 
 	/** @var LoggerInterface $log */
-	$log = $wp_hook_annotations_container->get( 'test.logger' );
+	$log = $container->get( 'test.logger' );
 
 	$log_output = '';
-	foreach($args as $arg){
-		if(is_scalar($arg)){
-			$arg = strval($arg);
+	foreach ( $args as $arg ) {
+		if ( is_scalar( $arg ) ) {
+			$arg = strval( $arg );
 		} else {
-			$arg = print_r($arg,true);
+			$arg = print_r( $arg, true );
 		}
 		$log_output .= $arg . ' ';
 	}
 
-	$log->info($log_output);
+	$log->info( $log_output );
 }
 
 if ( ! function_exists( 'add_filter' ) ) {
@@ -57,8 +47,7 @@ if ( ! function_exists( 'add_filter' ) ) {
 	 * @param int $accepted_args
 	 *
 	 * @return bool
-	 * @throws DependencyException
-	 * @throws NotFoundException
+	 * @throws Exception
 	 */
 	function add_filter(
 		$tag,
@@ -66,7 +55,9 @@ if ( ! function_exists( 'add_filter' ) ) {
 		$priority = 10,
 		$accepted_args = 1
 	) {
-		wp_hook_annotations_test_hook_logger(__FUNCTION__, $tag, $function_to_add, $priority, $accepted_args);
+		wp_hook_annotations_test_hook_logger( __FUNCTION__, $tag,
+			$function_to_add, $priority, $accepted_args );
+
 		return true;
 	}
 }
@@ -81,8 +72,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	 * @param int $accepted_args
 	 *
 	 * @return bool
-	 * @throws DependencyException
-	 * @throws NotFoundException
+	 * @throws Exception
 	 */
 	function add_action(
 		$tag,
@@ -90,7 +80,9 @@ if ( ! function_exists( 'add_action' ) ) {
 		$priority = 10,
 		$accepted_args = 1
 	) {
-		wp_hook_annotations_test_hook_logger(__FUNCTION__, $tag, $function_to_add, $priority, $accepted_args);
+		wp_hook_annotations_test_hook_logger( __FUNCTION__, $tag,
+			$function_to_add, $priority, $accepted_args );
+
 		return true;
 	}
 }
@@ -103,14 +95,15 @@ if ( ! function_exists( 'add_shortcode' ) ) {
 	 * @param     $function_to_add
 	 *
 	 * @return bool
-	 * @throws DependencyException
-	 * @throws NotFoundException
+	 * @throws Exception
 	 */
 	function add_shortcode(
 		$tag,
 		$function_to_add
 	) {
-		wp_hook_annotations_test_hook_logger(__FUNCTION__, $tag, $function_to_add);
+		wp_hook_annotations_test_hook_logger( __FUNCTION__, $tag,
+			$function_to_add );
+
 		return true;
 	}
 }

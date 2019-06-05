@@ -1,16 +1,16 @@
 <?php
 declare( strict_types=1 );
 
-namespace Tests\Hooks;
+namespace WpHookAnnotations\Tests\Hooks;
 
 use DI\DependencyException;
-use HookAnnotations\DIContainer\ContainerAware;
-use HookAnnotations\Hooks\HookAware;
-use HookAnnotations\Hooks\Model\Action;
-use HookAnnotations\Hooks\Model\Filter;
-use HookAnnotations\Hooks\Model\Shortcode;
+use WpHookAnnotations\DIContainer\ContainerAware;
+use WpHookAnnotations\Hooks\HookAware;
+use WpHookAnnotations\Hooks\Model\Action;
+use WpHookAnnotations\Hooks\Model\Filter;
+use WpHookAnnotations\Hooks\Model\Shortcode;
 use PHPUnit\Framework\TestCase;
-use Tests\ContainerTestCase;
+use WpHookAnnotations\Tests\ContainerTestCase;
 
 class HookbackAwareTest extends ContainerTestCase {
 	use HookAware;

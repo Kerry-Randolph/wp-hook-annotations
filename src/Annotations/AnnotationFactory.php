@@ -1,13 +1,13 @@
 <?php
 declare( strict_types=1 );
 
-namespace HookAnnotations\Annotations;
+namespace WpHookAnnotations\Annotations;
 
 use DI\Annotation\Inject;
 use Doctrine\Common\Annotations\AnnotationException;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Annotations\Reader;
-use HookAnnotations\Reflections\ReflectionFactory;
+use WpHookAnnotations\Reflections\ReflectionFactory;
 use InvalidArgumentException;
 use ReflectionClass;
 use ReflectionException;

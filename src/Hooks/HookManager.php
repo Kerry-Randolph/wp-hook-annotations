@@ -1,13 +1,13 @@
 <?php
 declare( strict_types=1 );
 
-namespace HookAnnotations\Hooks;
+namespace WpHookAnnotations\Hooks;
 
 use DI\DependencyException;
 use DI\NotFoundException;
 use Doctrine\Common\Annotations\AnnotationException;
-use HookAnnotations\Annotations\AnnotationFactory;
-use HookAnnotations\Hooks\Model\Hook;
+use WpHookAnnotations\Annotations\AnnotationFactory;
+use WpHookAnnotations\Hooks\Model\Hook;
 use ReflectionException;
 use ReflectionMethod;
 use Reflector;

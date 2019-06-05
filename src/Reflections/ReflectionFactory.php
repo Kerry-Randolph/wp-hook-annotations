@@ -1,7 +1,7 @@
 <?php
 declare( strict_types=1 );
 
-namespace HookAnnotations\Reflections;
+namespace WpHookAnnotations\Reflections;
 
 use ReflectionClass;
 use ReflectionException;

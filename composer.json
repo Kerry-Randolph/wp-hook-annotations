@@ -5,7 +5,6 @@
   "type": "library",
   "homepage": "https://github.com/Kerry-Randolph/wp-hook-annotations",
   "license": "MIT",
-  "minimum-stability": "stable",
   "authors": [
     {
       "name": "Kerry Randolph",
@@ -29,12 +28,12 @@
   },
   "autoload": {
     "psr-4": {
-      "HookAnnotations\\": "src/"
+      "WpHookAnnotations\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\": "tests/"
+      "WpHookAnnotations\\Tests\\": "tests/"
     }
   }
 }

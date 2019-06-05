@@ -1,7 +1,7 @@
 <?php
 declare( strict_types=1 );
 
-namespace HookAnnotations\Annotations;
+namespace WpHookAnnotations\Annotations;
 
 use InvalidArgumentException;
 
@@ -34,6 +34,16 @@ trait ConstructionHelper {
 		return $value;
 	}
 
+	/**
+	 * Searches for $index in the array $values
+	 * If found, tests the associated value with $test_scalar
+	 * If test passed, executes the $setter callback
+	 *
+	 * @param string   $index
+	 * @param array    $values
+	 * @param callable $test_scalar
+	 * @param callable $setter
+	 */
 	protected function trySet(
 		string $index,
 		array $values,

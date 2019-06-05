@@ -1,7 +1,7 @@
 <?php
 declare( strict_types=1 );
 
-namespace HookAnnotations\Hooks;
+namespace WpHookAnnotations\Hooks;
 
 use DI\Annotation\Inject;
 use DI\DependencyException;

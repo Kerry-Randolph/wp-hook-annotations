@@ -1,18 +1,18 @@
 <?php
 declare( strict_types=1 );
 
-namespace Tests\Hooks;
+namespace WpHookAnnotations\Tests\Hooks;
 
 use DI\Annotation\Inject;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Doctrine\Common\Annotations\AnnotationException;
-use HookAnnotations\Hooks\HookManager;
-use HookAnnotations\Hooks\Model\Action;
-use HookAnnotations\Hooks\Model\Filter;
-use HookAnnotations\Hooks\Model\Shortcode;
+use WpHookAnnotations\Hooks\HookManager;
+use WpHookAnnotations\Hooks\Model\Action;
+use WpHookAnnotations\Hooks\Model\Filter;
+use WpHookAnnotations\Hooks\Model\Shortcode;
 use ReflectionException;
-use Tests\ContainerTestCase;
+use WpHookAnnotations\Tests\ContainerTestCase;
 
 class HookManagerTest extends ContainerTestCase {
 

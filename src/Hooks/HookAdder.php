@@ -1,21 +1,21 @@
 <?php
 declare( strict_types=1 );
 
-namespace HookAnnotations\Hooks;
+namespace WpHookAnnotations\Hooks;
 
 use DI\DependencyException;
 use DI\NotFoundException;
-use HookAnnotations\Hooks\Model\Action;
-use HookAnnotations\Hooks\Model\Filter;
-use HookAnnotations\Hooks\Model\Hook;
-use HookAnnotations\Hooks\Model\Shortcode;
+use WpHookAnnotations\Hooks\Model\Action;
+use WpHookAnnotations\Hooks\Model\Filter;
+use WpHookAnnotations\Hooks\Model\Hook;
+use WpHookAnnotations\Hooks\Model\Shortcode;
 
 /**
  * Class HookAdder
  *
  * Reads an object for hook related annotations, and adds callbacks wordpress
  *
- * @package HookAnnotations\Hooks
+ * @package WpHookAnnotations\Hooks
  */
 class HookAdder {
 
@@ -27,6 +27,8 @@ class HookAdder {
 	 */
 	public function addHooks( array $hookbacks ): void {
 		foreach ( $hookbacks as $hookback ) {
+			/* Order is important. Action extends (is_a) filter, so we need to
+			   check instanceof Action first */
 			if ( $hookback instanceof Action ) {
 				add_action( $hookback->getTag(),
 					$hookback->getCallback(),

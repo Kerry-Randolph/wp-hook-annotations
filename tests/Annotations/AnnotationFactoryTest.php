@@ -1,18 +1,18 @@
 <?php
 declare( strict_types=1 );
 
-namespace Tests\Annotations;
+namespace WpHookAnnotations\Tests\Annotations;
 
 use DI\Annotation\Inject;
 use Doctrine\Common\Annotations\AnnotationException;
-use HookAnnotations\Annotations\AnnotationFactory;
-use HookAnnotations\Hooks\Model\Action;
-use HookAnnotations\Hooks\Model\Filter;
-use HookAnnotations\Hooks\Model\Hook;
+use WpHookAnnotations\Annotations\AnnotationFactory;
+use WpHookAnnotations\Hooks\Model\Action;
+use WpHookAnnotations\Hooks\Model\Filter;
+use WpHookAnnotations\Hooks\Model\Hook;
 use ReflectionException;
 use ReflectionMethod;
 use Reflector;
-use Tests\ContainerTestCase;
+use WpHookAnnotations\Tests\ContainerTestCase;
 
 class AnnotationFactoryTest extends ContainerTestCase {
 

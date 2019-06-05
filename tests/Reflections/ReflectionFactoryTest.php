@@ -1,12 +1,12 @@
 <?php
 declare( strict_types=1 );
 
-namespace Tests\Reflections;
+namespace WpHookAnnotations\Tests\Reflections;
 
 use DI\Annotation\Inject;
-use HookAnnotations\Reflections\ReflectionFactory;
+use WpHookAnnotations\Reflections\ReflectionFactory;
 use ReflectionException;
-use Tests\ContainerTestCase;
+use WpHookAnnotations\Tests\ContainerTestCase;
 
 class ReflectionFactoryTest extends ContainerTestCase {
 
